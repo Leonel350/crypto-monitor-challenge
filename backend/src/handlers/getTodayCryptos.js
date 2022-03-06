@@ -24,12 +24,20 @@ async function getChartData(event, context) {
   let daysArr = [];
   let todayData = await getTodayData();
   if (todayData) todayData.cryptos = JSON.parse(todayData.cryptos);
+  if (todayData)
+  todayData.parsedDate = `${new Date(todayData.date).getDate()}/${
+    new Date(todayData.date).getMonth() + 1
+  }/${new Date(todayData.date).getFullYear()}`;
   daysArr.push(todayData);
   for (let index = 1; index < 7; index++) {
     let date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000 * index);
     date.setHours(0, 0, 0, 0);
     let data = await getAnyDayData(date.toISOString());
     if (data) data.cryptos = JSON.parse(data.cryptos);
+    if (data)
+      data.parsedDate = `${new Date(data.date).getDate()}/${
+        new Date(data.date).getMonth() + 1
+      }/${new Date(data.date).getFullYear()}`;
     daysArr.push(data);
   }
 

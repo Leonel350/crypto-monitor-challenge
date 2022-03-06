@@ -30,7 +30,7 @@ Routes:
     handler: src/handlers/addCrypto.sellHandler
     events:
       - http:
-          method: DELETE
+          method: PATCH
           path: /cryptos
           cors: true
   dailyRun:

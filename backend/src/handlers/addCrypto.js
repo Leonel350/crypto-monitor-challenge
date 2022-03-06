@@ -5,7 +5,13 @@ import { getTodayData, updateTodayUSDValue } from "../lib/getTodayData";
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 async function addCrypto(event, context) {
-  const { token, amount, price } = event.body;
+  let { token, amount, price } = event.body;
+  amount = parseFloat(amount);
+  if (!token || !amount || !price) {
+    return generateResponse(400, {
+      status: "Missing data (token, amount or price)",
+    });
+  }
   const data = await getTodayData();
   console.log("data es :" + JSON.stringify(data));
   let newCryptos = JSON.parse(data.cryptos);
@@ -53,7 +59,14 @@ async function addCrypto(event, context) {
 }
 
 async function sellCrypto(event, context) {
-  const { token, amount } = event.body;
+  console.log(JSON.stringify(event));
+  let { token, amount } = event.body;
+  amount = parseFloat(amount);
+  if (!token || !amount) {
+    return generateResponse(400, {
+      status: "Missing data (token or amount)",
+    });
+  }
   const data = await getTodayData();
   console.log("data es :" + JSON.stringify(data));
   let newCryptos = JSON.parse(data.cryptos);
