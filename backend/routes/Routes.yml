@@ -1,0 +1,41 @@
+Routes:
+  # Defines an HTTP API endpoint that calls the main function in create.js
+  # - path: url path is /notes
+  # - method: POST request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  getTodayCryptos:
+    handler: src/handlers/getTodayCryptos.handler
+    events:
+      - http:
+          method: GET
+          path: /cryptos
+          cors: true
+  getChartData:
+    handler: src/handlers/getTodayCryptos.chartData
+    events:
+      - http:
+          method: GET
+          path: /cryptos/chart
+          cors: true
+  addCrypto:
+    handler: src/handlers/addCrypto.handler
+    events:
+      - http:
+          method: POST
+          path: /cryptos
+          cors: true
+  sellCrypto:
+    handler: src/handlers/addCrypto.sellHandler
+    events:
+      - http:
+          method: DELETE
+          path: /cryptos
+          cors: true
+  dailyRun:
+    handler: src/handlers/getTodayCryptos.daily
+    events:
+      - schedule:
+          rate: rate(1 day)
+          enabled: ${self:custom.scheduleEnabled}

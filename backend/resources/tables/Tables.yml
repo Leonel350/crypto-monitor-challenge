@@ -1,0 +1,23 @@
+Resources:
+  CryptosTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      # Generate a name based on the stage
+      TableName: leo-spark-challenge-1-${self:custom.stage}-cryptos
+      AttributeDefinitions:
+        - AttributeName: _id
+          AttributeType: S
+        - AttributeName: date
+          AttributeType: S
+      KeySchema:
+        - AttributeName: _id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: date
+          KeySchema:
+            - AttributeName: date
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL  
+      # Set the capacity to auto-scale
+      BillingMode: PAY_PER_REQUEST

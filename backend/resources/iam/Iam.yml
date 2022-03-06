@@ -1,0 +1,14 @@
+Iam:
+  - Effect: Allow
+    Action:
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+
+    Resource:
+      - ${self:custom.CryptosTable.arn}
+      - !Join ["/", ["${self:custom.CryptosTable.arn}", "index", "date"]]
