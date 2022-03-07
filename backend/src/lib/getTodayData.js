@@ -10,6 +10,7 @@ export async function getTodayData() {
   now.setHours(0, 0, 0, 0);
   const today = now.toISOString();
   console.log("el nombre de la tabla es: " + process.env.CRYPTOS_TABLE_NAME);
+  console.log("hoy es " + today);
   try {
     const results = await dynamodb
       .query({
@@ -28,6 +29,7 @@ export async function getTodayData() {
   } catch (error) {
     console.error(error);
   }
+  console.log("se trajo: " + JSON.stringify(todayData));
   if (Array.isArray(todayData) && todayData.length) {
     return todayData[0];
   } else {
@@ -145,6 +147,7 @@ export async function getYesterdayData() {
 }
 
 export async function getAnyDayData(day) {
+  console.log("dia recibido:" + day);
   let dayData;
   try {
     const results = await dynamodb
@@ -164,6 +167,7 @@ export async function getAnyDayData(day) {
   } catch (error) {
     console.error(error);
   }
+  console.log(JSON.stringify(dayData));
 
   if (Array.isArray(dayData) && dayData.length) {
     if (!dayData[0].hasOwnProperty("usdValue")) {

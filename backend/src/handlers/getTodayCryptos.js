@@ -14,8 +14,10 @@ async function getTodayCryptos(event, context) {
   if (!data.hasOwnProperty("usdValue")) {
     const now = new Date();
     now.setHours(0, 0, 0, 0);
-    data = getAnyDayData(now.toISOString());
+    console.log(now);
+    data = await getAnyDayData(now.toISOString());
   }
+  console.log(JSON.stringify(data));
   data.cryptos = JSON.parse(data.cryptos);
   return generateResponse(200, { data });
 }
