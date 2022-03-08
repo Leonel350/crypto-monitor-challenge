@@ -10,7 +10,7 @@ I decided to develop a full Node+React app. I used Serverless Framework with AWS
 
 The system does not use authentication and does not allow multiple users. This feature could be added. The system stores the information of the cryptos for each day starting the day the first request is made to the backend. This information includes the value in dollars for that day at the end of the day. The user will be able to see its current balance in dollars, the balance for each crypto and the value in dollars at the moment of the request. The system stores the “app” (Average Purchase Price) of each crypto each day. With this information the application can calculate the difference between this price and the actual price.
 
-In the frontend the user can see a chart made using the value of the cryptos made at the end of each day. The user can add a crypto, which will be validated. The user can remove cryptos from the database too.
+In the frontend the user can see a chart made using the value of the cryptos calculated at the end of each day. The user can add a crypto, which will be validated. The user can remove cryptos from the database too.
 
 ## The Stack
 
