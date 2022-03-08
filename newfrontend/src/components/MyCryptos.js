@@ -34,7 +34,7 @@ export default function MyCryptos() {
       for (const crypto of responseData.data.cryptos) {
         const usdValue = await getCryptoUSD(crypto.token);
         let percentage = (
-          (parseFloat(usdValue) * 100) / parseFloat(crypto.ppc) -
+          (parseFloat(usdValue).toFixed(2) * 100) / parseFloat(crypto.ppc).toFixed(3) -
           100
         ).toFixed(2);
         newRows.push(
@@ -64,7 +64,7 @@ export default function MyCryptos() {
             <TableCell>Amount</TableCell>
             <TableCell>Total USD </TableCell>
             <TableCell>USD Per Action</TableCell>
-            <TableCell>PPC</TableCell>
+            <TableCell>APP</TableCell>
             <TableCell align="right">%</TableCell>
           </TableRow>
         </TableHead>
