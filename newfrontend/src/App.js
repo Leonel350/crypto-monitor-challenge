@@ -4,6 +4,7 @@ import Add from "./components/Add";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Sell from "./components/Sell";
+import MagicConversion from "./components/MagicConversion";
 function App() {
   return (
     <Router>
@@ -16,6 +17,9 @@ function App() {
         </Route>
         <Route exact path="/sell">
          <Sell></Sell>
+        </Route>
+        <Route exact path="/conversion">
+         <MagicConversion></MagicConversion>
         </Route>
       </Switch>
     </Router>

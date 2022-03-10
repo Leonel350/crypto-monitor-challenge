@@ -18,19 +18,23 @@ export default function SellForm() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      searchToken(token)
-    }, 300)
+      searchToken(token);
+    }, 300);
 
-    return () => clearTimeout(delayDebounceFn)
-  }, [token])
+    return () => clearTimeout(delayDebounceFn);
+  }, [token]);
 
   async function sendData() {
-    if (validToken) {
+    if (validToken === "valid") {
       setsending(true);
       console.log(token, amount);
-      await sellCrypto(token, amount);
+      try {
+        await sellCrypto(token, amount);
+        window.location = "/";
+      } catch (error) {
+        console.log(error);
+      }
       setsending(false);
-      window.location = "/";
     }
   }
   async function searchToken(token) {
@@ -86,7 +90,7 @@ export default function SellForm() {
       <div>
         <TextField
           label="Token"
-          onChange={e=>setToken(e.target.value)}
+          onChange={(e) => setToken(e.target.value)}
         ></TextField>
       </div>
       <TokenValider></TokenValider>

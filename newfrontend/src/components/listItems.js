@@ -5,6 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PaidIcon from "@mui/icons-material/Paid";
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 export const mainListItems = (
   <React.Fragment>
@@ -30,6 +31,14 @@ export const mainListItems = (
           <RemoveCircleIcon />
         </ListItemIcon>
         <ListItemText primary="Sell/Remove Crypto" />
+      </ListItemButton>
+    </a>
+    <a href="/conversion">
+      <ListItemButton>
+        <ListItemIcon>
+          <CurrencyExchangeIcon />
+        </ListItemIcon>
+        <ListItemText primary="Magic Conversion" />
       </ListItemButton>
     </a>
   </React.Fragment>

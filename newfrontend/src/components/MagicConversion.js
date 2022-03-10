@@ -18,6 +18,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
 import AddForm from './AddForm';
 import CryptosInfo from './CryptosInfo';
+import ConversionForm from './ConversionForm';
 
 
 function Copyright(props) {
@@ -80,7 +81,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function AddContent() {
+function ConversionContent() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -161,10 +162,10 @@ function AddContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 420
+                    height: 470
                   }}
                 >
-                  <AddForm />
+                  <ConversionForm />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={6} lg={6}>
@@ -173,7 +174,7 @@ function AddContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 420
+                    height: 470
                   }}
                 >
                   <CryptosInfo/>
@@ -188,6 +189,6 @@ function AddContent() {
   );
 }
 
-export default function Add() {
-  return <AddContent />;
+export default function MagicConversion() {
+  return <ConversionContent />;
 }
