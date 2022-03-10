@@ -24,7 +24,7 @@ import ConversionForm from './ConversionForm';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      <Link color="inherit" href="https://tobs.com/">
+      <Link color="inherit" href="https://tobs.com.ar/">
         CryptoMonitor by Leo
       </Link>{' '}
       {new Date().getFullYear()}
