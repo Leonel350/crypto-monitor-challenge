@@ -18,6 +18,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
 import AddForm from './AddForm';
 import SellForm from './SellForm';
+import CryptosInfo from './CryptosInfo';
 
 function Copyright(props) {
   return (
@@ -154,7 +155,7 @@ function SellContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Add */}
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} md={6} lg={6}>
                 <Paper
                   sx={{
                     p: 2,
@@ -166,7 +167,18 @@ function SellContent() {
                   <SellForm />
                 </Paper>
               </Grid>
-
+              <Grid item xs={12} md={6} lg={6}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 420
+                  }}
+                >
+                  <CryptosInfo/>
+                </Paper>
+              </Grid>
             <Copyright sx={{ pt: 4 }} />
             </Grid>
           </Container>

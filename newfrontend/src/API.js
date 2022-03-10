@@ -40,3 +40,10 @@ export async function sellCrypto(token, amount) {
   console.log(response);
   return response.data;
 }
+
+export async function getTopCryptos() {
+  const url = `https://data.messari.io/api/v2/assets?limit=9`;
+  const response = await axios.get(url, {});
+  console.log(response);
+  return response.data;
+}

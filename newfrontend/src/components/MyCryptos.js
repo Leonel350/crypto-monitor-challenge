@@ -77,7 +77,7 @@ export default function MyCryptos() {
               <TableCell>{`${row.value}`}</TableCell>
               <TableCell>{`${row.price}`}</TableCell>
               <TableCell>{`${row.ppm}`}</TableCell>
-              <TableCell align="right">{`${row.percentage} %`}</TableCell>
+              <TableCell align="right"> <span className={row.percentage > 0 ? "green" : "red"}>{`${row.percentage} %`}</span></TableCell>
             </TableRow>
           ))}
         </TableBody>
