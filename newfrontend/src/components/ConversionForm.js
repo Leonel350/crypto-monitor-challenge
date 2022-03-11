@@ -50,9 +50,14 @@ export default function ConversionForm() {
     try {
       const result = await getCryptoNAME(token);
       console.log(result);
-      setvalidToken2("valid");
-      setToken2Name(result);
-      setToken2(token.toUpperCase());
+      if (!result) {
+        setvalidToken2("invalid");
+      } else {
+        console.log(result);
+        setvalidToken2("valid");
+        setToken2Name(result);
+        setToken2(token.toUpperCase());
+      }
     } catch (error) {
       console.log("nope");
       setvalidToken2("invalid");

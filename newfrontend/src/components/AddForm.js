@@ -30,9 +30,14 @@ export default function AddForm() {
     try {
       const result = await getCryptoNAME(token);
       console.log(result);
-      setvalidToken("valid");
-      setTokenName(result);
-      setToken(token.toUpperCase());
+      if (!result) {
+        setvalidToken("invalid");
+      } else {
+        console.log(result);
+        setvalidToken("valid");
+        setTokenName(result);
+        setToken(token.toUpperCase());
+      }
     } catch (error) {
       console.log("nope");
       setvalidToken("invalid");

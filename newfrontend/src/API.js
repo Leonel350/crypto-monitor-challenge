@@ -24,7 +24,10 @@ export async function getCryptoNAME(token) {
   const url = `https://data.messari.io/api/v1/assets/${token}/metrics`;
   const response = await axios.get(url);
   console.log(response);
-  return response.data.data.name;
+  if(response.data.data.market_data.price_usd){
+    return response.data.data.name;
+  }
+  return null;
 }
 
 export async function addCrypto(token, amount, price) {
