@@ -9,6 +9,8 @@ import { getCryptoUSD, getTodayData } from "../API";
 import { useState } from "react";
 import { useEffect } from "react";
 import { CircularProgress } from "@mui/material";
+import TableContainer from "@mui/material/TableContainer";
+
 // Generate Order Data
 function createData(id, token, amount, price, value, ppm, percentage) {
   amount = amount.toFixed(2);
@@ -34,7 +36,8 @@ export default function MyCryptos() {
       for (const crypto of responseData.data.cryptos) {
         const usdValue = await getCryptoUSD(crypto.token);
         let percentage = (
-          (parseFloat(usdValue).toFixed(2) * 100) / parseFloat(crypto.ppc).toFixed(3) -
+          (parseFloat(usdValue).toFixed(2) * 100) /
+            parseFloat(crypto.ppc).toFixed(3) -
           100
         ).toFixed(2);
         newRows.push(
@@ -57,31 +60,38 @@ export default function MyCryptos() {
   return (
     <React.Fragment>
       <Title>My Cryptos</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Token</TableCell>
-            <TableCell>Amount</TableCell>
-            <TableCell>Total USD </TableCell>
-            <TableCell>USD Per Action</TableCell>
-            <TableCell>APP</TableCell>
-            <TableCell align="right">%</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.length === 0 && <CircularProgress></CircularProgress>}
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.token}</TableCell>
-              <TableCell>{`${row.amount}`}</TableCell>
-              <TableCell>{`${row.value}`}</TableCell>
-              <TableCell>{`${row.price}`}</TableCell>
-              <TableCell>{`${row.ppm}`}</TableCell>
-              <TableCell align="right"> <span className={row.percentage > 0 ? "green" : "red"}>{`${row.percentage} %`}</span></TableCell>
+      <TableContainer>
+        <Table sx={{ minWidth: 200 }} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Token</TableCell>
+              <TableCell>Amount</TableCell>
+              <TableCell>Total USD </TableCell>
+              <TableCell>USD Per Action</TableCell>
+              <TableCell>APP</TableCell>
+              <TableCell align="right">%</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows.length === 0 && <CircularProgress></CircularProgress>}
+            {rows.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>{row.token}</TableCell>
+                <TableCell>{`${row.amount}`}</TableCell>
+                <TableCell>{`${row.value}`}</TableCell>
+                <TableCell>{`${row.price}`}</TableCell>
+                <TableCell>{`${row.ppm}`}</TableCell>
+                <TableCell align="right">
+                  {" "}
+                  <span
+                    className={row.percentage > 0 ? "green" : "red"}
+                  >{`${row.percentage} %`}</span>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </React.Fragment>
   );
 }
